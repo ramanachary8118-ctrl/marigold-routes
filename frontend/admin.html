@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Marigold Routes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="admin-body">
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-card">
+            <h1>Marigold Routes</h1>
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="adminUsername">Username</label>
+                    <input type="text" id="adminUsername" required class="form-control" autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" required class="form-control" autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <div id="loginError" class="error-message hidden"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-dashboard hidden">
+        <!-- Admin Navbar -->
+        <nav class="admin-navbar">
+            <div class="admin-nav-brand">Marigold Routes Admin</div>
+            <div class="admin-nav-actions">
+                <span class="admin-user" id="adminUser">Admin User</span>
+                <button id="logoutBtn" class="btn btn-secondary-small">Logout</button>
+            </div>
+        </nav>
+
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+            <ul class="admin-menu">
+                <li><a href="#dashboard" class="admin-menu-item active" data-section="dashboard">📊 Dashboard</a></li>
+                <li><a href="#bookings" class="admin-menu-item" data-section="bookings">📅 Bookings</a></li>
+                <li><a href="#destinations" class="admin-menu-item" data-section="destinations">🗺️ Destinations</a></li>
+                <li><a href="#packages" class="admin-menu-item" data-section="packages">📦 Packages</a></li>
+                <li><a href="#enquiries" class="admin-menu-item" data-section="enquiries">✉️ Enquiries</a></li>
+                <li><a href="#reports" class="admin-menu-item" data-section="reports">📈 Reports</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-content">
+            <!-- Dashboard Overview -->
+            <section id="section-dashboard" class="admin-section">
+                <h1>Dashboard Overview</h1>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <h3 id="statTotalBookings">0</h3>
+                            <p>Total Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-info">
+                            <h3 id="statPendingBookings">0</h3>
+                            <p>Pending</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <h3 id="statConfirmedBookings">0</h3>
+                            <p>Confirmed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <h3 id="statRevenue">₹0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h2>Recent Bookings</h2>
+                        <div id="recentBookings" class="table-container">
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h2>Upcoming Departures</h2>
+                        <div id="upcomingDepartures" class="table-container">
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bookings Management -->
+            <section id="section-bookings" class="admin-section hidden">
+                <h1>Bookings Management</h1>
+                
+                <div class="admin-toolbar">
+                    <input type="text" id="bookingSearch" class="search-input" placeholder="Search by reference or name...">
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    <button id="refreshBookings" class="btn btn-secondary">Refresh</button>
+                </div>
+
+                <div id="bookingsTable" class="table-container">
+                    <p>Loading bookings...</p>
+                </div>
+            </section>
+
+            <!-- Destinations Management -->
+            <section id="section-destinations" class="admin-section hidden">
+                <h1>Destinations Management</h1>
+                
+                <div class="admin-toolbar">
+                    <button id="addDestination" class="btn btn-primary">+ Add Destination</button>
+                </div>
+
+                <div id="destinationsTable" class="table-container">
+                    <p>Loading destinations...</p>
+                </div>
+            </section>
+
+            <!-- Packages Management -->
+            <section id="section-packages" class="admin-section hidden">
+                <h1>Packages Management</h1>
+                
+                <div class="admin-toolbar">
+                    <button id="addPackage" class="btn btn-primary">+ Add Package</button>
+                    <select id="packageDestFilter" class="filter-select">
+                        <option value="all">All Destinations</option>
+                    </select>
+                </div>
+
+                <div id="packagesTable" class="table-container">
+                    <p>Loading packages...</p>
+                </div>
+            </section>
+
+            <!-- Enquiries -->
+            <section id="section-enquiries" class="admin-section hidden">
+                <h1>Contact Enquiries</h1>
+                
+                <div class="admin-toolbar">
+                    <select id="enquiryFilter" class="filter-select">
+                        <option value="all">All Enquiries</option>
+                        <option value="unread">Unread</option>
+                        <option value="read">Read</option>
+                    </select>
+                </div>
+
+                <div id="enquiriesTable" class="table-container">
+                    <p>Loading enquiries...</p>
+                </div>
+            </section>
+
+            <!-- Reports -->
+            <section id="section-reports" class="admin-section hidden">
+                <h1>Reports</h1>
+                
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Bookings by Date</h3>
+                        <button class="btn btn-secondary">Generate Report</button>
+                    </div>
+                    <div class="report-card">
+                        <h3>Bookings by Destination</h3>
+                        <button class="btn btn-secondary">Generate Report</button>
+                    </div>
+                    <div class="report-card">
+                        <h3>Revenue Summary</h3>
+                        <button class="btn btn-secondary">Generate Report</button>
+                    </div>
+                    <div class="report-card">
+                        <h3>Upcoming Departures</h3>
+                        <button class="btn btn-secondary">Generate Report</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Booking Detail Modal -->
+    <div id="bookingDetailModal" class="modal hidden">
+        <div class="modal-content large-modal">
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <div id="bookingDetailContent">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>

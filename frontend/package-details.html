@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Package details and day-by-day itinerary">
+    <title>Package Details - Marigold Routes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">Marigold Routes</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="booking.html" class="btn-primary-nav">Book a trip</a></li>
+                <li><a href="my-bookings.html">My bookings<span class="booking-count" id="bookingCount">0</span></a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="container">
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-indicator">
+                <div class="spinner"></div>
+                <p>Loading package details...</p>
+            </div>
+
+            <!-- Package Details Content -->
+            <div id="packageContent" class="hidden">
+                <!-- Breadcrumb -->
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="index.html">Home</a> / 
+                    <a href="packages.html">Packages</a> / 
+                    <span id="packageBreadcrumb">Package</span>
+                </nav>
+
+                <div class="package-detail-layout">
+                    <div class="package-main">
+                        <div class="package-header">
+                            <h1 id="packageName">Package Name</h1>
+                            <div class="package-meta">
+                                <span class="destination-tag" id="destinationTag"></span>
+                                <span class="duration-tag" id="durationTag"></span>
+                            </div>
+                        </div>
+
+                        <!-- Package Image -->
+                        <div class="package-image-container">
+                            <img id="packageImage" src="" alt="" class="package-image">
+                        </div>
+
+                        <!-- Description -->
+                        <section class="package-section">
+                            <h2>Overview</h2>
+                            <p id="packageDescription"></p>
+                        </section>
+
+                        <!-- Day-by-Day Itinerary -->
+                        <section class="package-section">
+                            <h2>Day-by-day itinerary</h2>
+                            <div id="itineraryContainer" class="itinerary-list">
+                                <!-- Loaded dynamically -->
+                            </div>
+                        </section>
+
+                        <!-- What's Included -->
+                        <section class="package-section">
+                            <h2>What's included</h2>
+                            <ul id="includedList" class="feature-list">
+                                <!-- Loaded dynamically -->
+                            </ul>
+                        </section>
+
+                        <!-- What's Not Included -->
+                        <section class="package-section">
+                            <h2>What's not included</h2>
+                            <ul id="excludedList" class="feature-list">
+                                <!-- Loaded dynamically -->
+                            </ul>
+                        </section>
+
+                        <!-- Accommodation Options -->
+                        <section class="package-section">
+                            <h2>Accommodation options</h2>
+                            <div id="accommodationOptions" class="accommodation-grid">
+                                <!-- Loaded dynamically -->
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Booking Sidebar -->
+                    <aside class="package-sidebar">
+                        <div class="booking-card sticky">
+                            <div class="price-display">
+                                <span class="price-label">Starting from</span>
+                                <div class="price-amount">
+                                    <span class="currency">₹</span>
+                                    <span id="packagePrice">0</span>
+                                    <span class="price-unit">per person</span>
+                                </div>
+                                <p class="price-note">Twin sharing in standard hotels</p>
+                            </div>
+                            <button id="bookNowBtn" class="btn btn-primary btn-block">Book this package</button>
+                            <ul class="quick-info">
+                                <li><strong>Duration:</strong> <span id="sidebarDuration"></span></li>
+                                <li><strong>Destination:</strong> <span id="sidebarDestination"></span></li>
+                                <li><strong>Start date:</strong> Any day from tomorrow</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Related Packages -->
+                <section class="related-packages">
+                    <h2>Similar packages</h2>
+                    <div id="relatedPackages" class="packages-grid-small">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="error-message hidden">
+                <h2>Package not found</h2>
+                <p>Sorry, we couldn't find the package you're looking for.</p>
+                <a href="packages.html" class="btn btn-primary">View all packages</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Marigold Routes</h4>
+                    <p>Guided trips across India.</p>
+                    <p class="footer-tagline">A sample travel and tourism website.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Plan with us</h4>
+                    <p>Phone: 040 5550 0148</p>
+                    <p>Email: <a href="mailto:hello@marigoldroutes.example">hello@marigoldroutes.example</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Good to know</h4>
+                    <p>Prices are per person, twin sharing.</p>
+                    <p>Child fare applies to ages 5 to 11 (70% of the adult fare).</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="cancellation.html">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Marigold Routes. Sample travel website for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/package-details.js"></script>
+</body>
+</html>

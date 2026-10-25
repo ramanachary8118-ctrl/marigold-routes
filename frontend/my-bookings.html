@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View and manage your bookings">
+    <title>My Bookings - Marigold Routes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">Marigold Routes</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="booking.html" class="btn-primary-nav">Book a trip</a></li>
+                <li><a href="my-bookings.html" class="active">My bookings<span class="booking-count" id="bookingCount">0</span></a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>My bookings</h1>
+                <p class="page-subtitle">View and manage your travel bookings</p>
+            </header>
+
+            <!-- Booking Lookup -->
+            <section class="booking-lookup">
+                <h2>Look up a booking</h2>
+                <form id="lookupForm" class="lookup-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="lookupReference">Booking Reference</label>
+                            <input type="text" id="lookupReference" class="form-control" placeholder="Enter your booking reference">
+                        </div>
+                        <div class="form-group">
+                            <label for="lookupEmail">Email</label>
+                            <input type="email" id="lookupEmail" class="form-control" placeholder="Email used for booking">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Look up</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Bookings List -->
+            <section class="bookings-section">
+                <h2>On this device</h2>
+                <div id="bookingsList" class="bookings-list">
+                    <!-- Loaded dynamically -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state">
+                    <p>No bookings found on this device.</p>
+                    <p>Bookings made on this device are automatically saved here.</p>
+                    <a href="booking.html" class="btn btn-primary">Make a booking</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Booking Detail Modal -->
+    <div id="bookingModal" class="modal hidden">
+        <div class="modal-content booking-detail-modal">
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <div id="bookingDetail">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancellation Confirmation Modal -->
+    <div id="cancellationModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Cancel booking?</h3>
+            <p>Are you sure you want to request cancellation for this booking?</p>
+            <p class="warning-text">This action cannot be undone. Refunds are subject to the cancellation policy.</p>
+            <div class="modal-actions">
+                <button id="confirmCancel" class="btn btn-danger">Yes, cancel booking</button>
+                <button id="cancelCancel" class="btn btn-secondary">No, keep booking</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Marigold Routes</h4>
+                    <p>Guided trips across India.</p>
+                    <p class="footer-tagline">A sample travel and tourism website.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Plan with us</h4>
+                    <p>Phone: 040 5550 0148</p>
+                    <p>Email: <a href="mailto:hello@marigoldroutes.example">hello@marigoldroutes.example</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Good to know</h4>
+                    <p>Prices are per person, twin sharing.</p>
+                    <p>Child fare applies to ages 5 to 11 (70% of the adult fare).</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="cancellation.html">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Marigold Routes. Sample travel website for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/my-bookings.js"></script>
+</body>
+</html>

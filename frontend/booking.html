@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book your guided trip across India">
+    <title>Book a Trip - Marigold Routes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">Marigold Routes</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="booking.html" class="btn-primary-nav active">Book a trip</a></li>
+                <li><a href="my-bookings.html">My bookings<span class="booking-count" id="bookingCount">0</span></a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>Book your trip</h1>
+                <p class="page-subtitle">Fill in the traveller details. The price updates as you change anything.</p>
+            </header>
+
+            <div class="booking-layout">
+                <!-- Booking Form -->
+                <div class="booking-form-container">
+                    <form id="bookingForm" class="booking-form">
+                        <!-- Package Selection -->
+                        <section class="form-section">
+                            <h2>Your trip</h2>
+                            
+                            <div class="form-group">
+                                <label for="packageSelect" class="required">Package</label>
+                                <select id="packageSelect" name="package" required class="form-control">
+                                    <option value="">Choose a package</option>
+                                    <!-- Loaded dynamically -->
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="startDate" class="required">Start date</label>
+                                    <input type="date" id="startDate" name="startDate" required class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="required">Hotel category</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="hotelCategory" value="standard" checked>
+                                        <span>Standard <small>(included)</small></span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="hotelCategory" value="superior">
+                                        <span>Superior <small>(+₹900/night)</small></span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="hotelCategory" value="luxury">
+                                        <span>Luxury <small>(+₹2,400/night)</small></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="adults" class="required">Adults (12+ years)</label>
+                                    <input type="number" id="adults" name="adults" min="1" max="10" value="2" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="children">Children (5 to 11 years)</label>
+                                    <input type="number" id="children" name="children" min="0" max="5" value="0" class="form-control">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Lead Traveller -->
+                        <section class="form-section">
+                            <h2>Lead traveller</h2>
+                            
+                            <div class="form-group">
+                                <label for="fullName" class="required">Full name</label>
+                                <input type="text" id="fullName" name="fullName" required class="form-control" placeholder="As shown on ID">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="mobile" class="required">Mobile number</label>
+                                    <input type="tel" id="mobile" name="mobile" required class="form-control" placeholder="+91 98765 43210">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="required">Email</label>
+                                    <input type="email" id="email" name="email" required class="form-control" placeholder="your@email.com">
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Extras -->
+                        <section class="form-section">
+                            <h2>Extras</h2>
+                            
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="airportPickup" value="yes">
+                                    <span>Airport pick-up and drop <small>(₹1,800 per booking)</small></span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="insurance" value="yes">
+                                    <span>Travel insurance <small>(₹650 per person)</small></span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="photographer" value="yes">
+                                    <span>Half-day photographer <small>(₹3,500 per booking)</small></span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="specialRequests">Special requests (optional)</label>
+                                <textarea id="specialRequests" name="specialRequests" class="form-control" rows="3" placeholder="Any dietary requirements, accessibility needs, or special occasions..."></textarea>
+                            </div>
+                        </section>
+
+                        <!-- Terms -->
+                        <section class="form-section">
+                            <div class="checkbox-group">
+                                <label class="checkbox-label required">
+                                    <input type="checkbox" name="acceptTerms" required>
+                                    <span>I accept the <a href="terms.html" target="_blank">Terms & Conditions</a> and <a href="cancellation.html" target="_blank">Cancellation Policy</a></span>
+                                </label>
+                            </div>
+                        </section>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">Confirm booking</button>
+                            <button type="button" id="clearForm" class="btn btn-secondary">Clear form</button>
+                        </div>
+
+                        <div class="form-note">
+                            <p><strong>Note:</strong> No payment is taken on this site. Confirming reserves the trip and gives you a reference number.</p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Price Summary Sidebar -->
+                <aside class="price-summary">
+                    <div class="price-summary-card sticky">
+                        <h3>Price summary</h3>
+                        
+                        <div id="priceBreakdown">
+                            <div class="price-placeholder">
+                                <p>Choose a package to see pricing</p>
+                            </div>
+                        </div>
+
+                        <div id="priceDetails" class="hidden">
+                            <div class="price-line">
+                                <span>Base package</span>
+                                <span id="basePrice">₹0</span>
+                            </div>
+                            <div class="price-line">
+                                <span id="travellersLabel">Travellers</span>
+                                <span id="travellersPrice">₹0</span>
+                            </div>
+                            <div class="price-line" id="hotelUpgradeLine" style="display: none;">
+                                <span>Hotel upgrade</span>
+                                <span id="hotelUpgradePrice">₹0</span>
+                            </div>
+                            <div class="price-line" id="extrasLine" style="display: none;">
+                                <span>Additional services</span>
+                                <span id="extrasPrice">₹0</span>
+                            </div>
+                            <hr>
+                            <div class="price-line">
+                                <span>Subtotal</span>
+                                <span id="subtotal">₹0</span>
+                            </div>
+                            <div class="price-line">
+                                <span>GST (5%)</span>
+                                <span id="gst">₹0</span>
+                            </div>
+                            <hr>
+                            <div class="price-total">
+                                <span>Total</span>
+                                <span id="total">₹0</span>
+                            </div>
+                            <p class="price-note">Total includes 5% GST</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="confirmationModal" class="modal hidden">
+        <div class="modal-content confirmation-modal">
+            <div class="confirmation-icon">✓</div>
+            <h2>Booking confirmed</h2>
+            <p class="confirmation-message">Thank you</p>
+            <div class="confirmation-details">
+                <p><strong>Booking Reference:</strong></p>
+                <p class="reference-number" id="referenceNumber"></p>
+                <p class="confirmation-note">Keep this reference number. It is saved under My bookings on this device.</p>
+            </div>
+            <div class="confirmation-actions">
+                <a href="my-bookings.html" class="btn btn-primary">View my bookings</a>
+                <button id="newBookingBtn" class="btn btn-secondary">Make another booking</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Marigold Routes</h4>
+                    <p>Guided trips across India.</p>
+                    <p class="footer-tagline">A sample travel and tourism website.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Plan with us</h4>
+                    <p>Phone: 040 5550 0148</p>
+                    <p>Email: <a href="mailto:hello@marigoldroutes.example">hello@marigoldroutes.example</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Good to know</h4>
+                    <p>Prices are per person, twin sharing.</p>
+                    <p>Child fare applies to ages 5 to 11 (70% of the adult fare).</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="cancellation.html">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Marigold Routes. Sample travel website for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/booking.js"></script>
+</body>
+</html>

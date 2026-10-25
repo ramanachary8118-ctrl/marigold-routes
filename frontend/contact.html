@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Marigold Routes for travel enquiries and support">
+    <title>Contact Us - Marigold Routes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">Marigold Routes</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="booking.html" class="btn-primary-nav">Book a trip</a></li>
+                <li><a href="my-bookings.html">My bookings<span class="booking-count" id="bookingCount">0</span></a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>Contact us</h1>
+                <p class="page-subtitle">We're here to help plan your perfect trip</p>
+            </header>
+
+            <div class="contact-layout">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="required">Your name</label>
+                            <input type="text" id="name" name="name" required class="form-control">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" class="required">Email</label>
+                                <input type="email" id="email" name="email" required class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone number</label>
+                                <input type="tel" id="phone" name="phone" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="required">Subject</label>
+                            <select id="subject" name="subject" required class="form-control">
+                                <option value="">Choose a subject</option>
+                                <option value="booking">Booking enquiry</option>
+                                <option value="package">Package information</option>
+                                <option value="destination">Destination enquiry</option>
+                                <option value="existing">Existing booking</option>
+                                <option value="cancellation">Cancellation request</option>
+                                <option value="payment">Payment issue</option>
+                                <option value="general">General enquiry</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="required">Message</label>
+                            <textarea id="message" name="message" required class="form-control" rows="6" placeholder="Please provide details about your enquiry..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large">Send message</button>
+                        </div>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="success-message hidden">
+                        <h3>Message sent successfully!</h3>
+                        <p>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+                        <button id="sendAnother" class="btn btn-secondary">Send another message</button>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <aside class="contact-info">
+                    <div class="info-card">
+                        <h3>Get in touch</h3>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:hello@marigoldroutes.example">hello@marigoldroutes.example</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>040 5550 0148</p>
+                                <p class="info-note">Available Mon-Fri, 9 AM - 6 PM IST</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🕐</div>
+                            <div>
+                                <h4>Response time</h4>
+                                <p>We typically respond within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Quick links</h3>
+                        <ul class="quick-links-list">
+                            <li><a href="faq.html">Frequently asked questions</a></li>
+                            <li><a href="my-bookings.html">Look up a booking</a></li>
+                            <li><a href="cancellation.html">Cancellation policy</a></li>
+                            <li><a href="terms.html">Terms & conditions</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Marigold Routes</h4>
+                    <p>Guided trips across India.</p>
+                    <p class="footer-tagline">A sample travel and tourism website.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Plan with us</h4>
+                    <p>Phone: 040 5550 0148</p>
+                    <p>Email: <a href="mailto:hello@marigoldroutes.example">hello@marigoldroutes.example</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Good to know</h4>
+                    <p>Prices are per person, twin sharing.</p>
+                    <p>Child fare applies to ages 5 to 11 (70% of the adult fare).</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="cancellation.html">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Marigold Routes. Sample travel website for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/contact.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ready-made travel packages for guided trips across India. 3 to 8 nights, all-inclusive pricing.">
+    <title>Travel Packages - Marigold Routes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">Marigold Routes</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html" class="active">Packages</a></li>
+                <li><a href="booking.html" class="btn-primary-nav">Book a trip</a></li>
+                <li><a href="my-bookings.html">My bookings<span class="booking-count" id="bookingCount">0</span></a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <div class="container">
+            <header class="page-header">
+                <h1>Travel Packages</h1>
+                <p class="page-subtitle">Ready-made itineraries. Prices per person on twin sharing in standard hotels.</p>
+            </header>
+
+            <!-- Filters and Sorting -->
+            <section class="filters">
+                <div class="filter-group">
+                    <label for="destinationFilter">Destination:</label>
+                    <select id="destinationFilter" class="filter-select">
+                        <option value="all">All destinations</option>
+                        <!-- Loaded dynamically -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortBy">Sort by:</label>
+                    <select id="sortBy" class="filter-select">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Lowest price</option>
+                        <option value="price-high">Highest price</option>
+                        <option value="duration-short">Shortest trip</option>
+                        <option value="duration-long">Longest trip</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search packages...">
+                </div>
+            </section>
+
+            <!-- Packages Grid -->
+            <section class="packages-grid" id="packagesGrid">
+                <div class="loading-indicator">
+                    <div class="spinner"></div>
+                    <p>Loading packages...</p>
+                </div>
+            </section>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="emptyState">
+                <p>No packages found matching your criteria.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Marigold Routes</h4>
+                    <p>Guided trips across India.</p>
+                    <p class="footer-tagline">A sample travel and tourism website.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Plan with us</h4>
+                    <p>Phone: 040 5550 0148</p>
+                    <p>Email: <a href="mailto:hello@marigoldroutes.example">hello@marigoldroutes.example</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Good to know</h4>
+                    <p>Prices are per person, twin sharing.</p>
+                    <p>Child fare applies to ages 5 to 11 (70% of the adult fare).</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="cancellation.html">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Marigold Routes. Sample travel website for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/packages.js"></script>
+</body>
+</html>

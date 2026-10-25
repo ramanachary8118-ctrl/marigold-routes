@@ -1,0 +1,328 @@
+/* ========================================
+   Admin Dashboard Styles
+   ======================================== */
+
+.admin-body {
+    background-color: #F5F5F5;
+}
+
+/* Login Screen */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--background-light) 100%);
+}
+
+.login-card {
+    background-color: var(--background-white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-card h1 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.login-card h2 {
+    color: var(--text-medium);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+/* Admin Dashboard Layout */
+.admin-dashboard {
+    display: grid;
+    grid-template-areas:
+        "navbar navbar"
+        "sidebar content";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}
+
+/* Admin Navbar */
+.admin-navbar {
+    grid-area: navbar;
+    background-color: var(--secondary-dark);
+    color: var(--background-white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-nav-brand {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.admin-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-user {
+    color: var(--background-white);
+}
+
+.btn-secondary-small {
+    background-color: transparent;
+    color: var(--background-white);
+    border: 1px solid var(--background-white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-secondary-small:hover {
+    background-color: var(--background-white);
+    color: var(--secondary-dark);
+}
+
+/* Admin Sidebar */
+.admin-sidebar {
+    grid-area: sidebar;
+    background-color: var(--background-white);
+    padding: 2rem 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-menu {
+    list-style: none;
+}
+
+.admin-menu-item {
+    display: block;
+    padding: 1rem 2rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.admin-menu-item:hover {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+}
+
+.admin-menu-item.active {
+    background-color: var(--primary-light);
+    color: var(--secondary-color);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Admin Content Area */
+.admin-content {
+    grid-area: content;
+    padding: 2rem;
+    max-width: 1400px;
+}
+
+.admin-section {
+    background-color: var(--background-white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-section h1 {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: var(--background-white);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-icon {
+    font-size: 3rem;
+}
+
+.stat-info h3 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.stat-info p {
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.dashboard-card {
+    background-color: var(--background-light);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+}
+
+.dashboard-card h2 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+/* Admin Toolbar */
+.admin-toolbar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.admin-toolbar .search-input,
+.admin-toolbar .filter-select {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Tables */
+.table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--background-white);
+}
+
+.admin-table th {
+    background-color: var(--primary-light);
+    color: var(--secondary-color);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.admin-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table tbody tr:hover {
+    background-color: var(--background-light);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-pending {
+    background-color: #FFF3CD;
+    color: #856404;
+}
+
+.status-confirmed {
+    background-color: #D4EDDA;
+    color: #155724;
+}
+
+.status-cancelled {
+    background-color: #F8D7DA;
+    color: #721C24;
+}
+
+.action-btn {
+    padding: 0.4rem 0.8rem;
+    margin-right: 0.5rem;
+    font-size: 0.85rem;
+    border-radius: var(--radius-sm);
+}
+
+/* Reports Grid */
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.report-card {
+    background-color: var(--background-light);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.report-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Large Modal */
+.large-modal {
+    max-width: 1000px;
+}
+
+/* Responsive Admin */
+@media (max-width: 1024px) {
+    .admin-dashboard {
+        grid-template-areas:
+            "navbar"
+            "sidebar"
+            "content";
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-sidebar {
+        padding: 1rem 0;
+    }
+    
+    .admin-menu {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .admin-menu-item {
+        padding: 0.75rem 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-content {
+        padding: 1rem;
+    }
+}
