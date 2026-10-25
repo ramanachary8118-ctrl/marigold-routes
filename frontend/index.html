@@ -1,138 +1,563 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Marigold Routes - Guided trips across India. Eight destinations, fixed prices, booked in two minutes.">
-    <title>Marigold Routes - Guided trips across India</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html">Marigold Routes</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="destinations.html">Destinations</a></li>
-                <li><a href="packages.html">Packages</a></li>
-                <li><a href="booking.html" class="btn-primary-nav">Book a trip</a></li>
-                <li><a href="my-bookings.html">My bookings<span class="booking-count" id="bookingCount">0</span></a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Marigold Routes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky top bar, compact hero with a drawn panorama, then destinations, packages, booking (form + live price), my bookings */
+:root{
+  --bg:#f1f5f3; --surface:#ffffff; --ink:#12201f; --muted:#4f615e; --line:#d2dcd8;
+  --accent:#0a6a6e; --accent-soft:#dcefee; --cta:#f0a81c; --cta-ink:#1b1405; --danger:#b3261e; --ok:#17633a;
+  --shadow:0 1px 2px rgba(18,32,31,.06),0 8px 24px rgba(18,32,31,.06);
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1514; --surface:#142120; --ink:#e6efec; --muted:#9db2ad; --line:#26393a;
+  --accent:#4cc3c4; --accent-soft:#17302f; --cta:#f0a81c; --cta-ink:#1b1405; --danger:#ff8a80; --ok:#6fd49a;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1514; --surface:#142120; --ink:#e6efec; --muted:#9db2ad; --line:#26393a;
+  --accent:#4cc3c4; --accent-soft:#17302f; --cta:#f0a81c; --cta-ink:#1b1405; --danger:#ff8a80; --ok:#6fd49a;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--cta);outline-offset:2px;border-radius:4px}
+.label{font:500 .74rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font:700 1rem/1 var(--body);border:0;border-radius:999px;padding:.95rem 1.4rem;cursor:pointer;text-decoration:none;min-height:46px}
+.btn-cta{background:var(--cta);color:var(--cta-ink)}
+.btn-cta:hover{filter:brightness(1.06)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-sm{padding:.7rem 1.05rem;font-size:.95rem;min-height:42px}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:1rem;min-height:62px;flex-wrap:wrap;padding-block:.35rem}
+.brand{font:800 1.3rem/1 var(--display);color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.5rem;margin-right:auto}
+.brand i{width:14px;height:14px;border-radius:50%;background:var(--cta);box-shadow:0 0 0 4px var(--accent-soft)}
+.nav{display:flex;gap:.25rem;flex-wrap:wrap}
+.nav a{color:var(--ink);text-decoration:none;font-weight:600;padding:.55rem .8rem;border-radius:999px;font-size:.98rem}
+.nav a:hover{background:var(--accent-soft);color:var(--accent)}
+.badge{background:var(--accent);color:var(--bg);font:500 .72rem/1 var(--mono);border-radius:999px;padding:.22rem .5rem;margin-left:.3rem}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center;padding-block:3.2rem 2.4rem}
+.hero h1{font-size:clamp(2.5rem,6.2vw,4.4rem);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{font-size:1.2rem;color:var(--muted);max-width:34rem;margin-top:1.1rem}
+.hero-cta{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.6rem}
+.panorama{border-radius:22px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:16/11;background:var(--accent-soft);max-width:100%}
+.panorama svg,.thumb svg{display:block;width:100%;height:100%}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:3rem}
+.facts div{background:var(--surface);padding:1rem 1.1rem}
+.facts b{display:block;font:700 1.05rem/1.2 var(--display)}
+.facts span{color:var(--muted);font-size:.95rem}
+
+section{padding-block:2.2rem 1.6rem}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem 2rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.sec-head p{color:var(--muted);max-width:36rem;margin-top:.5rem}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:.5rem .95rem;font:600 .93rem var(--body);cursor:pointer;min-height:40px}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+
+/* destinations */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);min-width:0}
+.thumb{aspect-ratio:16/10;background:var(--accent-soft)}
+.card .body{padding:1rem 1.1rem 1.15rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.card .meta{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline}
+.card p{color:var(--muted);font-size:.97rem}
+.card .foot{margin-top:auto;padding-top:.7rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.price{font:700 1.15rem/1 var(--display);font-variant-numeric:tabular-nums}
+.price small{font:400 .78rem var(--body);color:var(--muted);display:block;margin-top:.2rem}
+
+/* packages */
+.pk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:1.2rem}
+.pk{display:grid;grid-template-columns:150px 1fr;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);min-width:0}
+.pk .thumb{aspect-ratio:auto;height:100%;min-height:190px}
+.pk .body{padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.55rem;min-width:0}
+.pk h3{font-size:1.2rem}
+.tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.tag{background:var(--accent-soft);color:var(--accent);font:500 .73rem/1 var(--mono);padding:.34rem .55rem;border-radius:6px}
+.pk .row{display:flex;justify-content:space-between;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:auto}
+details{font-size:.96rem}
+summary{cursor:pointer;font-weight:600;color:var(--accent);padding:.2rem 0}
+.itin{margin:.5rem 0 0;padding:0;list-style:none;display:grid;gap:.4rem;color:var(--muted)}
+.itin li{display:grid;grid-template-columns:4.6rem 1fr;gap:.6rem}
+.itin b{font:500 .78rem/1.6 var(--mono);color:var(--ink)}
+
+/* booking */
+.book{display:grid;grid-template-columns:1.25fr 1fr;gap:1.6rem;align-items:start}
+form,.summary,.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.4rem;box-shadow:var(--shadow);min-width:0}
+fieldset{border:0;padding:0;margin:0 0 1.3rem;min-width:0}
+legend{font:700 1.05rem var(--display);padding:0;margin-bottom:.8rem}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem}
+.f{display:flex;flex-direction:column;gap:.35rem;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font-weight:600;font-size:.95rem}
+input,select,textarea{font:400 1rem var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:.7rem .8rem;min-height:46px;width:100%}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+.err{color:var(--danger);font-size:.88rem;min-height:1.1em}
+input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--danger)}
+.checks{display:grid;gap:.55rem}
+.check{display:flex;gap:.65rem;align-items:flex-start;border:1.5px solid var(--line);border-radius:10px;padding:.7rem .8rem;cursor:pointer;background:var(--bg)}
+.check input{width:20px;height:20px;min-height:0;margin:.15rem 0 0;accent-color:var(--accent);flex:none}
+.check span{display:flex;justify-content:space-between;gap:1rem;flex:1;min-width:0}
+.check em{font:500 .85rem var(--mono);font-style:normal;color:var(--muted);white-space:nowrap}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.seg label{border:1.5px solid var(--line);border-radius:10px;padding:.65rem .5rem;text-align:center;cursor:pointer;background:var(--bg);display:flex;flex-direction:column;gap:.15rem;font-weight:600;font-size:.95rem}
+.seg label small{font:400 .78rem var(--mono);color:var(--muted)}
+.seg input{position:absolute;opacity:0;width:1px;height:1px;min-height:0}
+.seg input:checked+label{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.seg input:focus-visible+label{outline:3px solid var(--cta);outline-offset:2px}
+.summary{position:sticky;top:84px}
+.summary h3{margin-bottom:.2rem}
+.lines{margin:1rem 0;display:grid;gap:.55rem;font-variant-numeric:tabular-nums}
+.lines div{display:flex;justify-content:space-between;gap:1rem;font-size:.97rem}
+.lines span:first-child{color:var(--muted)}
+.total{border-top:1.5px solid var(--ink);padding-top:.9rem;display:flex;justify-content:space-between;align-items:baseline;font:800 1.5rem var(--display);font-variant-numeric:tabular-nums}
+.note{font-size:.88rem;color:var(--muted);margin-top:.9rem}
+.form-actions{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+
+/* confirmation + bookings */
+.confirm{border:2px solid var(--ok);margin-top:1.6rem}
+.confirm .ref{font:500 1.5rem/1.2 var(--mono);letter-spacing:.04em;background:var(--bg);border:1.5px dashed var(--line);border-radius:10px;padding:.7rem 1rem;display:inline-block;margin:.7rem 0;max-width:100%;overflow-wrap:anywhere}
+.bk-list{display:grid;gap:.9rem}
+.bk{display:grid;grid-template-columns:1fr auto;gap:.5rem 1.2rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;align-items:center}
+.bk .ref2{font:500 .85rem var(--mono);color:var(--accent)}
+.bk p{color:var(--muted);font-size:.96rem}
+.empty{border:1.5px dashed var(--line);border-radius:14px;padding:1.6rem;color:var(--muted);text-align:center}
+.danger{color:var(--danger);border-color:var(--danger)}
+
+/* dialog */
+dialog{border:0;border-radius:20px;padding:0;max-width:min(720px,calc(100vw - 24px));width:100%;background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35);max-height:calc(100dvh - 24px);overflow:auto}
+dialog::backdrop{background:rgba(8,16,15,.6)}
+.dlg-body{padding:1.4rem 1.5rem 1.6rem;display:grid;gap:1rem}
+.dlg-hero{aspect-ratio:16/7;background:var(--accent-soft)}
+.dlg-hero svg{display:block;width:100%;height:100%}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem}
+.dgrid div{background:var(--bg);border-radius:10px;padding:.7rem .85rem}
+.dgrid b{display:block;font-weight:600;margin-top:.25rem;font-size:.97rem}
+.hl{margin:0;padding-left:1.2rem;display:grid;gap:.3rem}
+.dlg-close{justify-self:end}
+
+footer{border-top:1px solid var(--line);margin-top:3rem;padding-block:2rem 2.5rem;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;gap:1.5rem 3rem;flex-wrap:wrap;justify-content:space-between}
+footer b{color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.8rem 1.2rem;border-radius:999px;font-weight:600;z-index:40;max-width:calc(100vw - 32px)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:1.6rem;padding-top:2rem}
+  .book{grid-template-columns:1fr}
+  .summary{position:static}
+}
+@media (max-width:560px){
+  .pk{grid-template-columns:1fr}
+  .pk .thumb{aspect-ratio:16/8;min-height:0;height:auto}
+  .fields{grid-template-columns:1fr}
+  .bk{grid-template-columns:1fr}
+  .nav a{padding:.5rem .6rem;font-size:.92rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><i aria-hidden="true"></i>Marigold Routes</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#destinations">Destinations</a>
+      <a href="#packages">Packages</a>
+      <a href="#booking">Book a trip</a>
+      <a href="#my-bookings">My bookings<span class="badge" id="bk-count" hidden>0</span></a>
     </nav>
+  </div>
+</header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Guided trips across India</h1>
-                    <p class="hero-subtitle">Eight places. Fixed prices. Booked in two minutes.</p>
-                    <p class="hero-description">Pick a destination, choose a ready-made package, and see the full price per traveller before you confirm. Hotels, local transport and a trip captain are included in every package.</p>
-                    <div class="hero-buttons">
-                        <a href="packages.html" class="btn btn-primary">See packages</a>
-                        <a href="destinations.html" class="btn btn-secondary">Browse destinations</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<main id="top">
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <p class="label">Guided trips across India</p>
+      <h1>Eight places. <em>Fixed prices.</em> Booked in two minutes.</h1>
+      <p class="lead">Pick a destination, choose a ready-made package, and see the full price per traveller before you confirm. Hotels, local transport and a trip captain are included in every package.</p>
+      <div class="hero-cta">
+        <a class="btn btn-cta" href="#packages">See packages</a>
+        <a class="btn btn-ghost" href="#destinations">Browse destinations</a>
+      </div>
+    </div>
+    <div class="panorama" id="hero-art" role="img" aria-label="Illustration of mountains at sunrise"></div>
+  </div>
+  <div class="facts">
+    <div><b>8 destinations</b><span>Mountains, coast, backwaters and heritage towns</span></div>
+    <div><b>3 to 8 nights</b><span>Packages sized for a long weekend or a full holiday</span></div>
+    <div><b>Price per person</b><span>Twin sharing, shown in rupees; 5% GST added at booking</span></div>
+    <div><b>Start any day</b><span>Choose your own travel date, from tomorrow onward</span></div>
+  </div>
 
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">📍</div>
-                        <h3>8 destinations</h3>
-                        <p>Mountains, coast, backwaters and heritage towns</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📅</div>
-                        <h3>3 to 8 nights</h3>
-                        <p>Packages sized for a long weekend or a full holiday</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💰</div>
-                        <h3>Price per person</h3>
-                        <p>Twin sharing, shown in rupees; 5% GST added at booking</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🗓️</div>
-                        <h3>Start any day</h3>
-                        <p>Choose your own travel date, from tomorrow onward</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section id="destinations" aria-labelledby="d-h">
+    <div class="sec-head">
+      <div><p class="label">Where to</p><h2 id="d-h">Destinations</h2><p>Each place lists the best months to go and what the trip is built around. Open one for details.</p></div>
+      <div class="chips" id="d-chips" role="group" aria-label="Filter destinations by type"></div>
+    </div>
+    <div class="grid" id="d-grid"></div>
+  </section>
 
-        <!-- Quick Links Section -->
-        <section class="quick-links">
-            <div class="container">
-                <div class="quick-link-card">
-                    <h2>Where to</h2>
-                    <h3>Destinations</h3>
-                    <p>Each place lists the best months to go and what the trip is built around. Open one for details.</p>
-                    <a href="destinations.html" class="btn btn-primary">Browse destinations</a>
-                </div>
-                <div class="quick-link-card">
-                    <h2>What is included</h2>
-                    <h3>Travel packages</h3>
-                    <p>Prices are per person on twin sharing in standard hotels. Open the day plan to see the route.</p>
-                    <a href="packages.html" class="btn btn-primary">View packages</a>
-                </div>
-            </div>
-        </section>
+  <section id="packages" aria-labelledby="p-h">
+    <div class="sec-head">
+      <div><p class="label">What is included</p><h2 id="p-h">Travel packages</h2><p>Prices are per person on twin sharing in standard hotels. Open the day plan to see the route.</p></div>
+      <div class="chips" id="p-sort" role="group" aria-label="Sort packages">
+        <button class="chip" data-sort="featured" aria-pressed="true">Featured</button>
+        <button class="chip" data-sort="price" aria-pressed="false">Lowest price</button>
+        <button class="chip" data-sort="days" aria-pressed="false">Shortest trip</button>
+      </div>
+    </div>
+    <div class="pk-grid" id="p-grid"></div>
+  </section>
 
-        <!-- Loading Indicator -->
-        <div id="loadingIndicator" class="loading-indicator hidden">
-            <div class="spinner"></div>
-            <p>Loading...</p>
+  <section id="booking" aria-labelledby="b-h">
+    <div class="sec-head">
+      <div><p class="label">Reserve</p><h2 id="b-h">Book your trip</h2><p>Fill in the traveller details. The price on the right updates as you change anything.</p></div>
+    </div>
+    <div class="book">
+      <form id="bk-form" novalidate>
+        <fieldset>
+          <legend>Your trip</legend>
+          <div class="fields">
+            <div class="f full"><label for="f-pkg">Package</label><select id="f-pkg" name="pkg"></select><span class="err" id="e-pkg"></span></div>
+            <div class="f"><label for="f-date">Start date</label><input id="f-date" name="date" type="date"><span class="err" id="e-date"></span></div>
+            <div class="f"><label>Hotel category</label>
+              <div class="seg" role="radiogroup" aria-label="Hotel category">
+                <input type="radio" name="hotel" id="h0" value="0" checked><label for="h0">Standard<small>included</small></label>
+                <input type="radio" name="hotel" id="h1" value="900"><label for="h1">Superior<small>+₹900/night</small></label>
+                <input type="radio" name="hotel" id="h2" value="2400"><label for="h2">Luxury<small>+₹2,400/night</small></label>
+              </div></div>
+            <div class="f"><label for="f-ad">Adults (12+ years)</label><input id="f-ad" name="adults" type="number" min="1" max="10" value="2"><span class="err" id="e-ad"></span></div>
+            <div class="f"><label for="f-ch">Children (5 to 11 years)</label><input id="f-ch" name="children" type="number" min="0" max="6" value="0"><span class="err" id="e-ch"></span></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Lead traveller</legend>
+          <div class="fields">
+            <div class="f"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name"><span class="err" id="e-name"></span></div>
+            <div class="f"><label for="f-phone">Mobile number</label><input id="f-phone" name="phone" inputmode="numeric" autocomplete="tel-national" placeholder="10 digits"><span class="err" id="e-phone"></span></div>
+            <div class="f full"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"><span class="err" id="e-mail"></span></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Extras</legend>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="addon" value="transfer" data-price="1800" data-per="trip"><span>Airport pick-up and drop <em>₹1,800 per booking</em></span></label>
+            <label class="check"><input type="checkbox" name="addon" value="insurance" data-price="650" data-per="person"><span>Travel insurance <em>₹650 per person</em></span></label>
+            <label class="check"><input type="checkbox" name="addon" value="photo" data-price="3500" data-per="trip"><span>Half-day photographer <em>₹3,500 per booking</em></span></label>
+          </div>
+          <div class="f" style="margin-top:.9rem"><label for="f-note">Special requests (optional)</label><textarea id="f-note" name="note" maxlength="300" placeholder="Dietary needs, celebrations, accessibility"></textarea></div>
+        </fieldset>
+        <div class="form-actions">
+          <button class="btn btn-cta" type="submit">Confirm booking</button>
+          <button class="btn btn-ghost" type="reset" id="f-reset">Clear form</button>
         </div>
-    </main>
+      </form>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Marigold Routes</h4>
-                    <p>Guided trips across India.</p>
-                    <p class="footer-tagline">A sample travel and tourism website.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Plan with us</h4>
-                    <p>Phone: 040 5550 0148</p>
-                    <p>Email: <a href="mailto:hello@marigoldroutes.example">hello@marigoldroutes.example</a></p>
-                </div>
-                <div class="footer-section">
-                    <h4>Good to know</h4>
-                    <p>Prices are per person, twin sharing.</p>
-                    <p>Child fare applies to ages 5 to 11 (70% of the adult fare).</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="about.html">About us</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms & Conditions</a></li>
-                        <li><a href="cancellation.html">Cancellation Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Marigold Routes. Sample travel website for demonstration purposes.</p>
-            </div>
-        </div>
-    </footer>
+      <aside class="summary" aria-live="polite" aria-label="Price summary">
+        <p class="label">Price summary</p>
+        <h3 id="s-title">Choose a package</h3>
+        <p id="s-sub" class="note" style="margin-top:.2rem"></p>
+        <div class="lines" id="s-lines"></div>
+        <div class="total"><span>Total</span><span id="s-total">₹0</span></div>
+        <p class="note">Total includes 5% GST. No payment is taken on this site; confirming reserves the trip and gives you a reference number.</p>
+      </aside>
+    </div>
 
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/config.js"></script>
-</body>
-</html>
+    <div class="panel confirm" id="confirm" hidden tabindex="-1">
+      <p class="label" style="color:var(--ok)">Booking confirmed</p>
+      <h3 id="c-title">Thank you</h3>
+      <div class="ref" id="c-ref"></div>
+      <p id="c-text"></p>
+      <p class="note">Keep this reference number. It is saved under My bookings on this device.</p>
+    </div>
+  </section>
+
+  <section id="my-bookings" aria-labelledby="m-h">
+    <div class="sec-head"><div><p class="label">On this device</p><h2 id="m-h">My bookings</h2></div></div>
+    <div class="bk-list" id="bk-list"></div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Marigold Routes</b><br>Guided trips across India.<br>A sample travel and tourism website.</div>
+    <div><b>Plan with us</b><br>Phone: 040 5550 0148<br>Email: hello@marigoldroutes.example</div>
+    <div><b>Good to know</b><br>Prices are per person, twin sharing.<br>Child fare applies to ages 5 to 11 (70% of the adult fare).</div>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title"></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+"use strict";
+var INR=new Intl.NumberFormat("en-IN");
+function rs(n){return "₹"+INR.format(Math.round(n))}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+
+/* ---------- illustrations (drawn, no external images) ---------- */
+var uid=0;
+function palm(x,y,h,c){
+  var tx=x+h*.14,ty=y-h,d="M"+x+" "+y+" Q"+(x+h*.02)+" "+(y-h*.55)+" "+tx+" "+ty;
+  var s='<path d="'+d+'" stroke="'+c+'" stroke-width="'+Math.max(2,h*.045)+'" fill="none" stroke-linecap="round"/>';
+  [[-.5,.12],[-.34,-.06],[.0,-.16],[.34,-.04],[.5,.14]].forEach(function(f){
+    s+='<path d="M'+tx+' '+ty+' Q'+(tx+h*f[0]*.6)+' '+(ty+h*(f[1]-.2))+' '+(tx+h*f[0])+' '+(ty+h*f[1]+h*.1)+'" stroke="'+c+'" stroke-width="'+Math.max(2,h*.05)+'" fill="none" stroke-linecap="round"/>';
+  });
+  return s;
+}
+function crenels(x,y,w,n,c){var s="",cw=w/(n*2-1);for(var i=0;i<n;i++)s+='<rect x="'+(x+i*cw*2)+'" y="'+(y-8)+'" width="'+cw+'" height="9" fill="'+c+'"/>';return s}
+function scene(kind,p,label){
+  var id="g"+(++uid),t=p[0],b=p[1],sun=p[2],far=p[3],mid=p[4],near=p[5],o="";
+  o+='<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+t+'"/><stop offset="1" stop-color="'+b+'"/></linearGradient></defs><rect width="400" height="250" fill="url(#'+id+')"/>';
+  if(kind==="mountain"){
+    o+='<circle cx="300" cy="86" r="30" fill="'+sun+'"/>';
+    o+='<polygon points="0,172 50,112 92,152 142,88 204,164 262,102 322,152 362,122 400,162 400,250 0,250" fill="'+far+'"/>';
+    o+='<polygon points="142,88 128,110 138,106 146,116 154,104 162,110" fill="#f4f8fb" opacity=".85"/><polygon points="262,102 250,120 258,116 266,126 274,114 282,120" fill="#f4f8fb" opacity=".85"/>';
+    o+='<polygon points="0,204 60,144 122,192 190,132 262,196 332,152 400,204 400,250 0,250" fill="'+mid+'"/>';
+    o+='<polygon points="0,238 80,206 172,232 262,212 342,234 400,220 400,250 0,250" fill="'+near+'"/>';
+  }else if(kind==="coast"){
+    o+='<circle cx="120" cy="128" r="34" fill="'+sun+'"/>';
+    o+='<rect y="150" width="400" height="100" fill="'+far+'"/>';
+    for(var i=0;i<6;i++)o+='<path d="M'+(i*70-20)+' '+(166+i%3*12)+' q18 -7 36 0 t36 0 t36 0" stroke="'+mid+'" stroke-width="2" fill="none" opacity=".7"/>';
+    o+='<path d="M0 214 Q120 190 240 206 T400 196 L400 250 L0 250Z" fill="'+mid+'"/>';
+    o+='<path d="M0 238 Q140 218 260 232 T400 224 L400 250 L0 250Z" fill="'+near+'"/>';
+    o+=palm(318,222,96,near)+palm(352,224,70,near);
+  }else if(kind==="backwater"){
+    o+='<circle cx="300" cy="96" r="28" fill="'+sun+'"/>';
+    o+='<path d="M0 150 q20 -26 44 -8 q22 -24 48 -4 q26 -26 52 -2 q24 -22 50 0 q28 -24 56 0 q24 -18 50 -4 q30 -20 56 2 L400 250 L0 250Z" fill="'+far+'"/>';
+    o+='<rect y="166" width="400" height="84" fill="'+mid+'"/>';
+    for(var j=0;j<5;j++)o+='<path d="M'+(20+j*80)+' '+(190+j%2*16)+' q14 -5 28 0 t28 0" stroke="'+sun+'" stroke-width="2" fill="none" opacity=".5"/>';
+    o+='<path d="M96 200 h130 l-14 18 h-104z" fill="'+near+'"/><path d="M112 200 q48 -42 100 0z" fill="'+far+'"/><rect x="126" y="186" width="70" height="3" fill="'+near+'"/>';
+    o+=palm(40,184,104,near)+palm(70,186,78,near)+palm(352,190,98,near);
+  }else if(kind==="desert"){
+    o+='<circle cx="86" cy="98" r="30" fill="'+sun+'"/>';
+    o+='<rect x="200" y="112" width="150" height="58" fill="'+far+'"/><rect x="214" y="92" width="20" height="30" fill="'+far+'"/><rect x="310" y="96" width="22" height="26" fill="'+far+'"/><rect x="262" y="86" width="26" height="34" fill="'+far+'"/>'+crenels(200,112,150,8,far)+'<path d="M262 86 q13 -18 26 0z" fill="'+far+'"/>';
+    o+='<path d="M0 176 Q100 144 200 170 T400 160 L400 250 L0 250Z" fill="'+mid+'"/>';
+    o+='<path d="M0 216 Q120 180 240 212 T400 204 L400 250 L0 250Z" fill="'+near+'"/>';
+  }else{ /* ruins */
+    o+='<circle cx="316" cy="90" r="28" fill="'+sun+'"/>';
+    o+='<rect x="128" y="132" width="86" height="38" fill="'+far+'"/><rect x="144" y="112" width="54" height="22" fill="'+far+'"/><rect x="156" y="96" width="30" height="18" fill="'+far+'"/><rect x="164" y="82" width="14" height="14" fill="'+far+'"/>';
+    o+='<path d="M0 178 q30 -34 66 -10 q24 -30 56 -6 q20 -20 48 -2 L170 250 L0 250Z" fill="'+mid+'"/><path d="M230 182 q36 -40 76 -12 q28 -26 60 -4 q22 -10 34 8 L400 250 L230 250Z" fill="'+mid+'"/>';
+    o+='<path d="M0 226 Q80 204 160 224 T320 220 T400 226 L400 250 L0 250Z" fill="'+near+'"/><ellipse cx="60" cy="214" rx="38" ry="22" fill="'+near+'"/><ellipse cx="340" cy="212" rx="44" ry="26" fill="'+near+'"/>';
+  }
+  return '<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="'+esc(label)+'">'+o+'</svg>';
+}
+
+/* ---------- data ---------- */
+var DEST=[
+ {id:"kerala",name:"Kerala",place:"Alleppey, Munnar, Thekkady",type:"Backwaters",tag:"Nature",kind:"backwater",pal:["#f7c58f","#f0e4c0","#fff3c9","#3f7d5d","#2f8f8b","#173f3a"],best:"Oct to Mar",stay:"5 to 6 nights",reach:"Fly into Kochi (COK)",line:"Houseboats, tea hills and spice forests in one loop.",hl:["Overnight stay on a private houseboat in Alleppey","Tea estate walk above the clouds in Munnar","Periyar boat safari and a spice garden visit"]},
+ {id:"ladakh",name:"Ladakh",place:"Leh, Nubra, Pangong",type:"Mountains",tag:"Adventure",kind:"mountain",pal:["#2b5a8f","#e9b27c","#ffe9b0","#6d7ca6","#8d6a73","#3b2f3d"],best:"Jun to Sep",stay:"6 to 7 nights",reach:"Fly into Leh (IXL)",line:"High passes, monasteries and a lake that changes colour.",hl:["Cross Khardung La at 5,359 m","Sunrise at Pangong Tso","Monastery visits at Thiksey and Diskit"]},
+ {id:"rajasthan",name:"Rajasthan",place:"Jaipur, Jodhpur, Jaisalmer, Udaipur",type:"Heritage",tag:"Heritage",kind:"desert",pal:["#e8826b","#ffd9a0","#fff0c8","#a8553f","#d99a52","#7a3a2c"],best:"Oct to Mar",stay:"7 to 8 nights",reach:"Fly into Jaipur (JAI)",line:"Forts, palaces and a night under desert stars.",hl:["Amber Fort and the old city of Jaipur","Camel ride and camp at the Sam dunes","Lake Pichola sunset boat ride in Udaipur"]},
+ {id:"goa",name:"Goa",place:"North and South Goa",type:"Beaches",tag:"Beach",kind:"coast",pal:["#ff9a76","#ffd98f","#fff0b8","#2a9bb5","#1b7a96","#12384a"],best:"Nov to Feb",stay:"3 to 4 nights",reach:"Fly into Goa (GOX)",line:"Easy beach days, old Portuguese quarters and seafood.",hl:["Fontainhas heritage walk in Panjim","Sunset at Palolem beach","Spice plantation lunch in Ponda"]},
+ {id:"andaman",name:"Andaman Islands",place:"Port Blair, Havelock, Neil",type:"Beaches",tag:"Beach",kind:"coast",pal:["#5fc3d4","#e8fbf0","#fff6cf","#18a5b8","#0d7f9b","#0b4660"],best:"Nov to Apr",stay:"4 to 5 nights",reach:"Fly into Port Blair (IXZ)",line:"Clear water, coral and quiet white beaches.",hl:["Snorkelling at Elephant Beach","Radhanagar Beach at sunset","Cellular Jail and the evening light show"]},
+ {id:"hampi",name:"Hampi",place:"Hampi and Badami, Karnataka",type:"Heritage",tag:"Heritage",kind:"ruins",pal:["#f4a261","#fbe3b0","#fff1c4","#c9824a","#a8683a","#5e3a24"],best:"Oct to Feb",stay:"2 to 3 nights",reach:"Hyderabad to Hampi by road or train via Hospet",line:"A ruined empire spread over boulders and banana fields.",hl:["Virupaksha Temple and the stone chariot","Coracle ride on the Tungabhadra","Sunset from Matanga Hill"]},
+ {id:"manali",name:"Himachal",place:"Shimla, Kullu, Manali",type:"Mountains",tag:"Adventure",kind:"mountain",pal:["#7aa6d8","#f6e8d0","#fff6dd","#6c8fb8","#3f6a86","#1f3b4a"],best:"Mar to Jun, Dec to Jan",stay:"5 to 6 nights",reach:"Fly into Chandigarh (IXC) and drive",line:"Pine valleys in summer and snow fields in winter.",hl:["Toy train ride from Kalka to Shimla","Solang Valley activities","Old Manali cafés and the Hadimba Temple"]},
+ {id:"meghalaya",name:"Meghalaya",place:"Shillong, Cherrapunji, Dawki",type:"Backwaters",tag:"Nature",kind:"mountain",pal:["#9fd1b4","#eaf6df","#fffbd2","#4e9a76","#2f7a5a","#173f35"],best:"Oct to May",stay:"4 to 5 nights",reach:"Fly into Guwahati (GAU) and drive",line:"Living root bridges, waterfalls and glass-clear rivers.",hl:["Trek to the double-decker living root bridge","Boat ride on the Umngot river at Dawki","Nohkalikai Falls viewpoint"]}
+];
+var PKG=[
+ {id:"p1",dest:"kerala",name:"Kerala Backwater Escape",days:6,nights:5,price:28500,route:"Kochi, Munnar, Thekkady, Alleppey",inc:["Houseboat night","Breakfast and dinner","Private cab"],plan:[["Day 1","Arrive Kochi, Fort Kochi walk, Kathakali evening show"],["Day 2","Drive to Munnar via waterfalls, tea museum"],["Day 3","Eravikulam park and tea estate walk"],["Day 4","Thekkady, Periyar boat ride, spice garden"],["Day 5","Alleppey, board the houseboat, overnight on the water"],["Day 6","Breakfast on board, drop at Kochi"]],hot:1},
+ {id:"p2",dest:"ladakh",name:"Ladakh High Passes",days:7,nights:6,price:46900,route:"Leh, Nubra Valley, Pangong Tso",inc:["Inner line permits","Oxygen cylinder in vehicle","All meals"],plan:[["Day 1","Arrive Leh, rest day to adjust to altitude"],["Day 2","Leh palace, Shanti Stupa, local market"],["Day 3","Khardung La to Nubra, sand dunes at Hunder"],["Day 4","Diskit monastery, return via Shyok"],["Day 5","Drive to Pangong Tso, lakeside camp"],["Day 6","Sunrise at the lake, Thiksey on the way back"],["Day 7","Transfer to Leh airport"]],hot:1},
+ {id:"p3",dest:"rajasthan",name:"Royal Rajasthan Circuit",days:8,nights:7,price:39800,route:"Jaipur, Jodhpur, Jaisalmer, Udaipur",inc:["Heritage hotel stays","Breakfast","Monument entry fees"],plan:[["Day 1","Arrive Jaipur, Hawa Mahal and bazaar walk"],["Day 2","Amber Fort, City Palace, Jantar Mantar"],["Day 3","Drive to Jodhpur, Mehrangarh Fort"],["Day 4","Drive to Jaisalmer, golden fort at sunset"],["Day 5","Sam dunes, camel ride, desert camp"],["Day 6","Drive to Udaipur via Ranakpur temples"],["Day 7","City Palace, Lake Pichola boat ride"],["Day 8","Transfer to Udaipur airport"]],hot:1},
+ {id:"p4",dest:"goa",name:"Goa Beach Break",days:4,nights:3,price:17900,route:"North Goa and South Goa",inc:["Beach-side hotel","Breakfast","Airport transfers"],plan:[["Day 1","Arrive, Baga and Calangute, sunset at Chapora"],["Day 2","Old Goa churches, Fontainhas walk, spice farm lunch"],["Day 3","South Goa, Palolem and Colva beaches"],["Day 4","Free morning, departure"]],hot:0},
+ {id:"p5",dest:"andaman",name:"Andaman Island Escape",days:5,nights:4,price:38400,route:"Port Blair, Havelock, Neil Island",inc:["Ferry tickets","Snorkelling gear","Breakfast"],plan:[["Day 1","Arrive Port Blair, Cellular Jail light show"],["Day 2","Ferry to Havelock, Radhanagar Beach"],["Day 3","Elephant Beach snorkelling"],["Day 4","Ferry to Neil Island, Bharatpur beach"],["Day 5","Return to Port Blair, departure"]],hot:0},
+ {id:"p6",dest:"hampi",name:"Hampi Heritage Weekender",days:3,nights:2,price:11800,route:"Hampi and Badami",inc:["Heritage guide","Breakfast","AC cab"],plan:[["Day 1","Hospet pick-up, Virupaksha Temple, Hampi bazaar"],["Day 2","Vittala Temple, royal enclosure, coracle ride, Matanga Hill sunset"],["Day 3","Badami cave temples, drop at station"]],hot:0},
+ {id:"p7",dest:"manali",name:"Himachal Snow Trail",days:6,nights:5,price:24600,route:"Chandigarh, Shimla, Kullu, Manali",inc:["Hotel with heating","Breakfast and dinner","Volvo and cab transfers"],plan:[["Day 1","Chandigarh to Shimla, Mall Road"],["Day 2","Kufri and Jakhu temple"],["Day 3","Drive to Manali along the Beas river"],["Day 4","Solang Valley, optional snow activities"],["Day 5","Hadimba Temple, Old Manali, Vashisht springs"],["Day 6","Drive to Chandigarh"]],hot:0},
+ {id:"p8",dest:"meghalaya",name:"Meghalaya Living Roots",days:5,nights:4,price:26300,route:"Shillong, Cherrapunji, Dawki",inc:["Local guide","Breakfast","All permits and entry fees"],plan:[["Day 1","Guwahati to Shillong, Elephant Falls"],["Day 2","Cherrapunji, Nohkalikai Falls, Mawsmai cave"],["Day 3","Trek to the double-decker root bridge"],["Day 4","Dawki river boat ride, Mawlynnong village"],["Day 5","Drive to Guwahati airport"]],hot:0}
+];
+function dest(id){return DEST.filter(function(d){return d.id===id})[0]}
+function pkg(id){return PKG.filter(function(p){return p.id===id})[0]}
+function fromPrice(did){return Math.min.apply(null,PKG.filter(function(p){return p.dest===did}).map(function(p){return p.price}))}
+
+/* ---------- hero ---------- */
+document.getElementById("hero-art").innerHTML=scene("mountain",["#f7a35c","#ffe7b8","#fff7d6","#7a86b6","#5f6a99","#2b3558"],"Illustration of mountains at sunrise");
+
+/* ---------- destinations ---------- */
+var dFilter="All",dChips=document.getElementById("d-chips"),dGrid=document.getElementById("d-grid");
+["All","Mountains","Beaches","Heritage","Backwaters"].forEach(function(t){
+  var b=document.createElement("button");b.className="chip";b.textContent=t;b.setAttribute("aria-pressed",t==="All");
+  b.addEventListener("click",function(){dFilter=t;Array.prototype.forEach.call(dChips.children,function(c){c.setAttribute("aria-pressed",c===b)});drawDest()});
+  dChips.appendChild(b);
+});
+function drawDest(){
+  dGrid.innerHTML=DEST.filter(function(d){return dFilter==="All"||d.type===dFilter}).map(function(d){
+    return '<article class="card"><div class="thumb">'+scene(d.kind,d.pal,d.name+" illustration")+'</div><div class="body">'+
+    '<div class="meta"><h3>'+esc(d.name)+'</h3><span class="label">'+esc(d.type)+'</span></div>'+
+    '<p>'+esc(d.line)+'</p><p class="label" style="margin-top:.2rem">Best: '+esc(d.best)+'</p>'+
+    '<div class="foot"><div class="price">'+rs(fromPrice(d.id))+'<small>from, per person</small></div>'+
+    '<button class="btn btn-ghost btn-sm" data-open="'+d.id+'">View details</button></div></div></article>';
+  }).join("");
+}
+drawDest();
+
+/* ---------- dialog ---------- */
+var dlg=document.getElementById("dlg"),lastFocus=null;
+function openDest(id){
+  var d=dest(id),ps=PKG.filter(function(p){return p.dest===id});lastFocus=document.activeElement;
+  dlg.innerHTML='<div class="dlg-hero">'+scene(d.kind,d.pal,d.name)+'</div><div class="dlg-body"><div><p class="label">'+esc(d.place)+'</p><h2 id="dlg-title" style="font-size:2rem;margin-top:.4rem">'+esc(d.name)+'</h2></div>'+
+  '<p>'+esc(d.line)+'</p><div class="dgrid"><div><span class="label">Best time</span><b>'+esc(d.best)+'</b></div><div><span class="label">Ideal stay</span><b>'+esc(d.stay)+'</b></div><div><span class="label">Getting there</span><b>'+esc(d.reach)+'</b></div></div>'+
+  '<div><p class="label" style="margin-bottom:.5rem">Highlights</p><ul class="hl">'+d.hl.map(function(h){return "<li>"+esc(h)+"</li>"}).join("")+'</ul></div>'+
+  '<div class="form-actions">'+ps.map(function(p){return '<button class="btn btn-cta" data-book="'+p.id+'">Book '+esc(p.name)+' from '+rs(p.price)+'</button>'}).join("")+'<button class="btn btn-ghost dlg-close" id="dlg-x">Close</button></div></div>';
+  if(dlg.showModal){dlg.showModal()}else{dlg.setAttribute("open","")}
+  document.getElementById("dlg-x").focus();
+}
+function closeDlg(){if(dlg.close){dlg.close()}else{dlg.removeAttribute("open")}if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+dlg.addEventListener("click",function(e){
+  if(e.target===dlg){closeDlg();return}
+  var t=e.target.closest("button");if(!t)return;
+  if(t.id==="dlg-x")closeDlg();
+  if(t.dataset.book){closeDlg();chooseBook(t.dataset.book)}
+});
+dGrid.addEventListener("click",function(e){var b=e.target.closest("[data-open]");if(b)openDest(b.dataset.open)});
+
+/* ---------- packages ---------- */
+var pGrid=document.getElementById("p-grid"),sortBy="featured";
+function drawPk(){
+  var list=PKG.slice();
+  if(sortBy==="price")list.sort(function(a,b){return a.price-b.price});
+  else if(sortBy==="days")list.sort(function(a,b){return a.days-b.days});
+  else list.sort(function(a,b){return b.hot-a.hot});
+  pGrid.innerHTML=list.map(function(p){
+    var d=dest(p.dest);
+    return '<article class="pk"><div class="thumb">'+scene(d.kind,d.pal,d.name)+'</div><div class="body">'+
+    '<div><span class="label">'+p.days+' days, '+p.nights+' nights</span><h3 style="margin-top:.35rem">'+esc(p.name)+'</h3></div>'+
+    '<p style="color:var(--muted);font-size:.96rem">'+esc(p.route)+'</p>'+
+    '<div class="tags">'+p.inc.map(function(i){return '<span class="tag">'+esc(i)+'</span>'}).join("")+'</div>'+
+    '<details><summary>Day-by-day plan</summary><ul class="itin">'+p.plan.map(function(x){return '<li><b>'+x[0]+'</b><span>'+esc(x[1])+'</span></li>'}).join("")+'</ul></details>'+
+    '<div class="row"><div class="price">'+rs(p.price)+'<small>per person, twin sharing</small></div><button class="btn btn-cta btn-sm" data-book="'+p.id+'">Book this trip</button></div></div></article>';
+  }).join("");
+}
+drawPk();
+document.getElementById("p-sort").addEventListener("click",function(e){
+  var b=e.target.closest("[data-sort]");if(!b)return;sortBy=b.dataset.sort;
+  Array.prototype.forEach.call(this.children,function(c){c.setAttribute("aria-pressed",c===b)});drawPk();
+});
+pGrid.addEventListener("click",function(e){var b=e.target.closest("[data-book]");if(b)chooseBook(b.dataset.book)});
+
+/* ---------- booking form ---------- */
+var F=document.getElementById("bk-form"),sel=document.getElementById("f-pkg");
+sel.innerHTML='<option value="">Select a package</option>'+PKG.map(function(p){return '<option value="'+p.id+'">'+esc(p.name)+' ('+p.days+'D/'+p.nights+'N)</option>'}).join("");
+var dateEl=document.getElementById("f-date");
+function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+var tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);dateEl.min=iso(tomorrow);
+var nextWeek=new Date();nextWeek.setDate(nextWeek.getDate()+21);dateEl.value=iso(nextWeek);
+sel.value="p1";
+
+function chooseBook(id){
+  sel.value=id;update();
+  document.getElementById("booking").scrollIntoView({behavior:"smooth",block:"start"});
+  setTimeout(function(){document.getElementById("f-name").focus({preventScroll:true})},500);
+}
+function val(n){return F.elements[n].value}
+function calc(){
+  var p=pkg(sel.value);if(!p)return null;
+  var ad=parseInt(val("adults"),10)||0,ch=parseInt(val("children"),10)||0,hot=parseInt(F.querySelector('input[name="hotel"]:checked').value,10);
+  var heads=ad+ch,L=[];
+  L.push(["Adults: "+ad+" × "+rs(p.price),ad*p.price]);
+  if(ch)L.push(["Children: "+ch+" × "+rs(p.price*.7),ch*p.price*.7]);
+  if(hot)L.push(["Hotel upgrade: "+heads+" × "+p.nights+" nights",hot*p.nights*heads]);
+  var add=0,names=[];
+  Array.prototype.forEach.call(F.querySelectorAll('input[name="addon"]:checked'),function(c){
+    var pr=parseFloat(c.dataset.price),amt=c.dataset.per==="person"?pr*heads:pr;add+=amt;
+    L.push([c.closest("label").querySelector("span").firstChild.textContent.trim(),amt]);names.push(c.value);
+  });
+  var sub=L.reduce(function(s,x){return s+x[1]},0),gst=sub*.05;
+  L.push(["GST (5%)",gst]);
+  return {p:p,ad:ad,ch:ch,hot:hot,lines:L,total:sub+gst,addons:names};
+}
+function update(){
+  var c=calc(),lines=document.getElementById("s-lines");
+  if(!c){document.getElementById("s-title").textContent="Choose a package";document.getElementById("s-sub").textContent="";lines.innerHTML="";document.getElementById("s-total").textContent="₹0";return}
+  document.getElementById("s-title").textContent=c.p.name;
+  var ds=val("date");document.getElementById("s-sub").textContent=ds?fmtRange(ds,c.p.days):"Pick a start date";
+  lines.innerHTML=c.lines.map(function(l){return '<div><span>'+esc(l[0])+'</span><span>'+rs(l[1])+'</span></div>'}).join("");
+  document.getElementById("s-total").textContent=rs(c.total);
+}
+var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function parseISO(s){var a=s.split("-");return new Date(+a[0],+a[1]-1,+a[2])}
+function fmt(d){return d.getDate()+" "+MON[d.getMonth()]+" "+d.getFullYear()}
+function fmtRange(s,days){var a=parseISO(s),b=new Date(a);b.setDate(b.getDate()+days-1);return fmt(a)+" to "+fmt(b)}
+F.addEventListener("input",update);F.addEventListener("change",update);
+F.addEventListener("reset",function(){setTimeout(function(){sel.value="p1";dateEl.value=iso(nextWeek);clearErrs();update()},0)});
+update();
+
+function setErr(k,msg){var e=document.getElementById("e-"+k),i={pkg:sel,date:dateEl,ad:F.elements.adults,ch:F.elements.children,name:F.elements.name,phone:F.elements.phone,mail:F.elements.email}[k];
+  e.textContent=msg||"";if(i){if(msg)i.setAttribute("aria-invalid","true");else i.removeAttribute("aria-invalid")}return !msg}
+function clearErrs(){["pkg","date","ad","ch","name","phone","mail"].forEach(function(k){setErr(k,"")})}
+function validate(){
+  clearErrs();var bad=[];
+  if(!sel.value)bad.push(setErr("pkg","Choose a package."));
+  if(!dateEl.value)bad.push(setErr("date","Pick a start date."));
+  else if(parseISO(dateEl.value)<parseISO(dateEl.min))bad.push(setErr("date","Start date must be tomorrow or later."));
+  var ad=parseInt(val("adults"),10),ch=parseInt(val("children"),10);
+  if(!(ad>=1&&ad<=10))bad.push(setErr("ad","Enter 1 to 10 adults."));
+  if(!(ch>=0&&ch<=6))bad.push(setErr("ch","Enter 0 to 6 children."));
+  if(val("name").trim().length<3)bad.push(setErr("name","Enter the traveller's full name."));
+  if(!/^[6-9]\d{9}$/.test(val("phone").replace(/\s|-/g,"")))bad.push(setErr("phone","Enter a 10-digit mobile number starting with 6 to 9."));
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val("email").trim()))bad.push(setErr("mail","Enter a valid email address."));
+  var first=F.querySelector('[aria-invalid="true"]');if(first)first.focus();
+  return !first;
+}
+
+/* ---------- bookings storage ---------- */
+var KEY="marigold-routes-bookings",mem=[];
+function load(){try{var r=localStorage.getItem(KEY);if(r){var a=JSON.parse(r);if(Array.isArray(a))return a}}catch(e){}return mem}
+function save(a){mem=a;try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}}
+function ref(){var d=new Date(),s=(d.getFullYear()%100)+""+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0");
+  var r="";for(var i=0;i<4;i++)r+="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random()*32)];return "MR-"+s+"-"+r}
+var pending=null;
+function drawBk(){
+  var a=load(),box=document.getElementById("bk-list"),cnt=document.getElementById("bk-count");
+  cnt.hidden=!a.length;cnt.textContent=a.length;
+  if(!a.length){box.innerHTML='<div class="empty">No bookings yet. Trips you confirm above appear here with their reference numbers.</div>';return}
+  box.innerHTML=a.map(function(b){
+    var asking=pending===b.ref;
+    return '<div class="bk"><div><span class="ref2">'+esc(b.ref)+'</span><h3 style="margin:.2rem 0">'+esc(b.pkg)+'</h3><p>'+esc(b.when)+' · '+b.ad+' adult'+(b.ad>1?"s":"")+(b.ch?", "+b.ch+" child"+(b.ch>1?"ren":""):"")+' · '+esc(b.hotel)+'</p><p>Booked for '+esc(b.name)+'</p></div>'+
+    '<div style="text-align:right;display:grid;gap:.5rem;justify-items:end"><div class="price">'+rs(b.total)+'</div>'+
+    (asking?'<div class="form-actions"><button class="btn btn-ghost btn-sm danger" data-yes="'+b.ref+'">Yes, cancel trip</button><button class="btn btn-ghost btn-sm" data-no="1">Keep it</button></div>':'<button class="btn btn-ghost btn-sm" data-cancel="'+b.ref+'">Cancel booking</button>')+'</div></div>';
+  }).join("");
+}
+document.getElementById("bk-list").addEventListener("click",function(e){
+  var t=e.target.closest("button");if(!t)return;
+  if(t.dataset.cancel){pending=t.dataset.cancel}
+  else if(t.dataset.no){pending=null}
+  else if(t.dataset.yes){save(load().filter(function(b){return b.ref!==t.dataset.yes}));pending=null;toast("Booking cancelled")}
+  drawBk();
+});
+function toast(m){var t=document.getElementById("toast");t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){t.hidden=true},2600)}
+
+F.addEventListener("submit",function(e){
+  e.preventDefault();if(!validate())return;
+  var c=calc(),hotelName={"0":"Standard hotels","900":"Superior hotels","2400":"Luxury hotels"}[String(c.hot)];
+  var b={ref:ref(),pkg:c.p.name,when:fmtRange(val("date"),c.p.days),ad:c.ad,ch:c.ch,hotel:hotelName,name:val("name").trim(),total:c.total,at:Date.now()};
+  var a=load();a.unshift(b);save(a);drawBk();
+  document.getElementById("c-ref").textContent=b.ref;
+  document.getElementById("c-title").textContent="Your "+c.p.name+" trip is reserved";
+  document.getElementById("c-text").textContent=b.when+" · "+c.ad+" adult"+(c.ad>1?"s":"")+(c.ch?" and "+c.ch+" child"+(c.ch>1?"ren":""):"")+" · "+hotelName+" · Total "+rs(c.total)+" for "+b.name+".";
+  var cf=document.getElementById("confirm");cf.hidden=false;cf.scrollIntoView({behavior:"smooth",block:"center"});cf.focus({preventScroll:true});
+});
+drawBk();
+})();
+</script>
+
+
+
+</body></html>
