@@ -1,3 +1,33 @@
+# Marigold Routes
+
+The working reference website is `frontend/index.html`: eight destinations, package sorting, itineraries, destination dialogs, live prices, validated sample bookings, local booking history and cancellation. It preserves the supplied Netlify design and works without a backend.
+
+**Demo only:** no real reservation, payment or email is made. Sample booking history lives in the browser on this device. Contact details are placeholders.
+
+## Preview and check
+
+```sh
+python -m http.server 3000 --directory frontend
+node site.test.cjs
+```
+
+Open http://localhost:3000. Test destinations, package sorting, the price calculator, validation, confirmation, refresh persistence and cancellation.
+
+## GitHub Pages
+
+In this repository, open **Settings Ã¢â€ â€™ Pages Ã¢â€ â€™ Source Ã¢â€ â€™ GitHub Actions**. The `Publish Marigold Routes` workflow deploys on pushes to `main` and supports manual runs. It publishes only the self-contained reference homepage, not the unfinished alternative pages or backend.
+
+Expected address after a successful deployment: https://ramanachary8118-ctrl.github.io/marigold-routes/
+
+## Separate full-stack prototype
+
+The other frontend pages, Flask backend and database files are retained as an unfinished prototype. They are not part of the static deployment. Existing documents in `docs/` describe that older prototype and may overstate completeness. Real payments, shared booking records, email and admin features require separate implementation, hosting and security review; GitHub Pages cannot run Flask or PostgreSQL.
+
+---
+
+<details>
+<summary>Archived full-stack prototype setup notes (not the deployed site)</summary>
+
 # Marigold Routes - Travel Booking Platform
 
 A complete full-stack travel booking website featuring guided trips across India. This platform includes a responsive frontend, Flask backend, PostgreSQL database, Razorpay payment integration, and email notifications.
@@ -460,3 +490,5 @@ After installation:
 ---
 
 **Built with ❤️ as a full-stack travel booking platform demonstration**
+
+</details>
