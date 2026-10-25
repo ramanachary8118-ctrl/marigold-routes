@@ -1,5 +1,6 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Marigold Routes</title>
+<meta name="description" content="Explore eight destinations across India, compare guided trip packages and plan a sample booking with transparent pricing.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -201,7 +202,7 @@ footer b{color:var(--ink)}
   </div>
   <div class="facts">
     <div><b>8 destinations</b><span>Mountains, coast, backwaters and heritage towns</span></div>
-    <div><b>3 to 8 nights</b><span>Packages sized for a long weekend or a full holiday</span></div>
+    <div><b>2 to 7 nights</b><span>Packages sized for a long weekend or a full holiday</span></div>
     <div><b>Price per person</b><span>Twin sharing, shown in rupees; 5% GST added at booking</span></div>
     <div><b>Start any day</b><span>Choose your own travel date, from tomorrow onward</span></div>
   </div>
@@ -235,32 +236,32 @@ footer b{color:var(--ink)}
         <fieldset>
           <legend>Your trip</legend>
           <div class="fields">
-            <div class="f full"><label for="f-pkg">Package</label><select id="f-pkg" name="pkg"></select><span class="err" id="e-pkg"></span></div>
-            <div class="f"><label for="f-date">Start date</label><input id="f-date" name="date" type="date"><span class="err" id="e-date"></span></div>
+            <div class="f full"><label for="f-pkg">Package</label><select id="f-pkg" aria-describedby="e-pkg" name="pkg"></select><span class="err" aria-live="polite" id="e-pkg"></span></div>
+            <div class="f"><label for="f-date">Start date</label><input id="f-date" aria-describedby="e-date" name="date" type="date"><span class="err" aria-live="polite" id="e-date"></span></div>
             <div class="f"><label>Hotel category</label>
               <div class="seg" role="radiogroup" aria-label="Hotel category">
                 <input type="radio" name="hotel" id="h0" value="0" checked><label for="h0">Standard<small>included</small></label>
-                <input type="radio" name="hotel" id="h1" value="900"><label for="h1">Superior<small>+₹900/night</small></label>
-                <input type="radio" name="hotel" id="h2" value="2400"><label for="h2">Luxury<small>+₹2,400/night</small></label>
+                <input type="radio" name="hotel" id="h1" value="900"><label for="h1">Superior<small>+â‚¹900/night</small></label>
+                <input type="radio" name="hotel" id="h2" value="2400"><label for="h2">Luxury<small>+â‚¹2,400/night</small></label>
               </div></div>
-            <div class="f"><label for="f-ad">Adults (12+ years)</label><input id="f-ad" name="adults" type="number" min="1" max="10" value="2"><span class="err" id="e-ad"></span></div>
-            <div class="f"><label for="f-ch">Children (5 to 11 years)</label><input id="f-ch" name="children" type="number" min="0" max="6" value="0"><span class="err" id="e-ch"></span></div>
+            <div class="f"><label for="f-ad">Adults (12+ years)</label><input id="f-ad" aria-describedby="e-ad" name="adults" type="number" min="1" max="10" value="2"><span class="err" aria-live="polite" id="e-ad"></span></div>
+            <div class="f"><label for="f-ch">Children (5 to 11 years)</label><input id="f-ch" aria-describedby="e-ch" name="children" type="number" min="0" max="6" value="0"><span class="err" aria-live="polite" id="e-ch"></span></div>
           </div>
         </fieldset>
         <fieldset>
           <legend>Lead traveller</legend>
           <div class="fields">
-            <div class="f"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name"><span class="err" id="e-name"></span></div>
-            <div class="f"><label for="f-phone">Mobile number</label><input id="f-phone" name="phone" inputmode="numeric" autocomplete="tel-national" placeholder="10 digits"><span class="err" id="e-phone"></span></div>
-            <div class="f full"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email"><span class="err" id="e-mail"></span></div>
+            <div class="f"><label for="f-name">Full name</label><input id="f-name" aria-describedby="e-name" name="name" autocomplete="name"><span class="err" aria-live="polite" id="e-name"></span></div>
+            <div class="f"><label for="f-phone">Mobile number</label><input id="f-phone" aria-describedby="e-phone" name="phone" inputmode="numeric" autocomplete="tel-national" placeholder="10 digits"><span class="err" aria-live="polite" id="e-phone"></span></div>
+            <div class="f full"><label for="f-mail">Email</label><input id="f-mail" aria-describedby="e-mail" name="email" type="email" autocomplete="email"><span class="err" aria-live="polite" id="e-mail"></span></div>
           </div>
         </fieldset>
         <fieldset>
           <legend>Extras</legend>
           <div class="checks">
-            <label class="check"><input type="checkbox" name="addon" value="transfer" data-price="1800" data-per="trip"><span>Airport pick-up and drop <em>₹1,800 per booking</em></span></label>
-            <label class="check"><input type="checkbox" name="addon" value="insurance" data-price="650" data-per="person"><span>Travel insurance <em>₹650 per person</em></span></label>
-            <label class="check"><input type="checkbox" name="addon" value="photo" data-price="3500" data-per="trip"><span>Half-day photographer <em>₹3,500 per booking</em></span></label>
+            <label class="check"><input type="checkbox" name="addon" value="transfer" data-price="1800" data-per="trip"><span>Airport pick-up and drop <em>â‚¹1,800 per booking</em></span></label>
+            <label class="check"><input type="checkbox" name="addon" value="insurance" data-price="650" data-per="person"><span>Travel insurance <em>â‚¹650 per person</em></span></label>
+            <label class="check"><input type="checkbox" name="addon" value="photo" data-price="3500" data-per="trip"><span>Half-day photographer <em>â‚¹3,500 per booking</em></span></label>
           </div>
           <div class="f" style="margin-top:.9rem"><label for="f-note">Special requests (optional)</label><textarea id="f-note" name="note" maxlength="300" placeholder="Dietary needs, celebrations, accessibility"></textarea></div>
         </fieldset>
@@ -275,13 +276,13 @@ footer b{color:var(--ink)}
         <h3 id="s-title">Choose a package</h3>
         <p id="s-sub" class="note" style="margin-top:.2rem"></p>
         <div class="lines" id="s-lines"></div>
-        <div class="total"><span>Total</span><span id="s-total">₹0</span></div>
-        <p class="note">Total includes 5% GST. No payment is taken on this site; confirming reserves the trip and gives you a reference number.</p>
+        <div class="total"><span>Total</span><span id="s-total">â‚¹0</span></div>
+        <p class="note">Total includes 5% GST. This is a demo: no payment or real reservation is made. Sample bookings are saved only in this browser, not sent to a travel operator.</p>
       </aside>
     </div>
 
     <div class="panel confirm" id="confirm" hidden tabindex="-1">
-      <p class="label" style="color:var(--ok)">Booking confirmed</p>
+      <p class="label" style="color:var(--ok)">Sample booking saved</p>
       <h3 id="c-title">Thank you</h3>
       <div class="ref" id="c-ref"></div>
       <p id="c-text"></p>
@@ -311,7 +312,7 @@ footer b{color:var(--ink)}
 (function(){
 "use strict";
 var INR=new Intl.NumberFormat("en-IN");
-function rs(n){return "₹"+INR.format(Math.round(n))}
+function rs(n){return "â‚¹"+INR.format(Math.round(n))}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 
 /* ---------- illustrations (drawn, no external images) ---------- */
@@ -370,7 +371,7 @@ var DEST=[
  {id:"goa",name:"Goa",place:"North and South Goa",type:"Beaches",tag:"Beach",kind:"coast",pal:["#ff9a76","#ffd98f","#fff0b8","#2a9bb5","#1b7a96","#12384a"],best:"Nov to Feb",stay:"3 to 4 nights",reach:"Fly into Goa (GOX)",line:"Easy beach days, old Portuguese quarters and seafood.",hl:["Fontainhas heritage walk in Panjim","Sunset at Palolem beach","Spice plantation lunch in Ponda"]},
  {id:"andaman",name:"Andaman Islands",place:"Port Blair, Havelock, Neil",type:"Beaches",tag:"Beach",kind:"coast",pal:["#5fc3d4","#e8fbf0","#fff6cf","#18a5b8","#0d7f9b","#0b4660"],best:"Nov to Apr",stay:"4 to 5 nights",reach:"Fly into Port Blair (IXZ)",line:"Clear water, coral and quiet white beaches.",hl:["Snorkelling at Elephant Beach","Radhanagar Beach at sunset","Cellular Jail and the evening light show"]},
  {id:"hampi",name:"Hampi",place:"Hampi and Badami, Karnataka",type:"Heritage",tag:"Heritage",kind:"ruins",pal:["#f4a261","#fbe3b0","#fff1c4","#c9824a","#a8683a","#5e3a24"],best:"Oct to Feb",stay:"2 to 3 nights",reach:"Hyderabad to Hampi by road or train via Hospet",line:"A ruined empire spread over boulders and banana fields.",hl:["Virupaksha Temple and the stone chariot","Coracle ride on the Tungabhadra","Sunset from Matanga Hill"]},
- {id:"manali",name:"Himachal",place:"Shimla, Kullu, Manali",type:"Mountains",tag:"Adventure",kind:"mountain",pal:["#7aa6d8","#f6e8d0","#fff6dd","#6c8fb8","#3f6a86","#1f3b4a"],best:"Mar to Jun, Dec to Jan",stay:"5 to 6 nights",reach:"Fly into Chandigarh (IXC) and drive",line:"Pine valleys in summer and snow fields in winter.",hl:["Toy train ride from Kalka to Shimla","Solang Valley activities","Old Manali cafés and the Hadimba Temple"]},
+ {id:"manali",name:"Himachal",place:"Shimla, Kullu, Manali",type:"Mountains",tag:"Adventure",kind:"mountain",pal:["#7aa6d8","#f6e8d0","#fff6dd","#6c8fb8","#3f6a86","#1f3b4a"],best:"Mar to Jun, Dec to Jan",stay:"5 to 6 nights",reach:"Fly into Chandigarh (IXC) and drive",line:"Pine valleys in summer and snow fields in winter.",hl:["Toy train ride from Kalka to Shimla","Solang Valley activities","Old Manali cafÃ©s and the Hadimba Temple"]},
  {id:"meghalaya",name:"Meghalaya",place:"Shillong, Cherrapunji, Dawki",type:"Backwaters",tag:"Nature",kind:"mountain",pal:["#9fd1b4","#eaf6df","#fffbd2","#4e9a76","#2f7a5a","#173f35"],best:"Oct to May",stay:"4 to 5 nights",reach:"Fly into Guwahati (GAU) and drive",line:"Living root bridges, waterfalls and glass-clear rivers.",hl:["Trek to the double-decker living root bridge","Boat ride on the Umngot river at Dawki","Nohkalikai Falls viewpoint"]}
 ];
 var PKG=[
@@ -471,9 +472,9 @@ function calc(){
   var p=pkg(sel.value);if(!p)return null;
   var ad=parseInt(val("adults"),10)||0,ch=parseInt(val("children"),10)||0,hot=parseInt(F.querySelector('input[name="hotel"]:checked').value,10);
   var heads=ad+ch,L=[];
-  L.push(["Adults: "+ad+" × "+rs(p.price),ad*p.price]);
-  if(ch)L.push(["Children: "+ch+" × "+rs(p.price*.7),ch*p.price*.7]);
-  if(hot)L.push(["Hotel upgrade: "+heads+" × "+p.nights+" nights",hot*p.nights*heads]);
+  L.push(["Adults: "+ad+" Ã— "+rs(p.price),ad*p.price]);
+  if(ch)L.push(["Children: "+ch+" Ã— "+rs(p.price*.7),ch*p.price*.7]);
+  if(hot)L.push(["Hotel upgrade: "+heads+" Ã— "+p.nights+" nights",hot*p.nights*heads]);
   var add=0,names=[];
   Array.prototype.forEach.call(F.querySelectorAll('input[name="addon"]:checked'),function(c){
     var pr=parseFloat(c.dataset.price),amt=c.dataset.per==="person"?pr*heads:pr;add+=amt;
@@ -485,7 +486,7 @@ function calc(){
 }
 function update(){
   var c=calc(),lines=document.getElementById("s-lines");
-  if(!c){document.getElementById("s-title").textContent="Choose a package";document.getElementById("s-sub").textContent="";lines.innerHTML="";document.getElementById("s-total").textContent="₹0";return}
+  if(!c){document.getElementById("s-title").textContent="Choose a package";document.getElementById("s-sub").textContent="";lines.innerHTML="";document.getElementById("s-total").textContent="â‚¹0";return}
   document.getElementById("s-title").textContent=c.p.name;
   var ds=val("date");document.getElementById("s-sub").textContent=ds?fmtRange(ds,c.p.days):"Pick a start date";
   lines.innerHTML=c.lines.map(function(l){return '<div><span>'+esc(l[0])+'</span><span>'+rs(l[1])+'</span></div>'}).join("");
@@ -504,12 +505,13 @@ function setErr(k,msg){var e=document.getElementById("e-"+k),i={pkg:sel,date:dat
 function clearErrs(){["pkg","date","ad","ch","name","phone","mail"].forEach(function(k){setErr(k,"")})}
 function validate(){
   clearErrs();var bad=[];
+  var minDate=new Date();minDate.setDate(minDate.getDate()+1);dateEl.min=iso(minDate);
   if(!sel.value)bad.push(setErr("pkg","Choose a package."));
   if(!dateEl.value)bad.push(setErr("date","Pick a start date."));
   else if(parseISO(dateEl.value)<parseISO(dateEl.min))bad.push(setErr("date","Start date must be tomorrow or later."));
-  var ad=parseInt(val("adults"),10),ch=parseInt(val("children"),10);
-  if(!(ad>=1&&ad<=10))bad.push(setErr("ad","Enter 1 to 10 adults."));
-  if(!(ch>=0&&ch<=6))bad.push(setErr("ch","Enter 0 to 6 children."));
+  var ad=Number(val("adults")),ch=Number(val("children"));
+  if(!(Number.isInteger(ad)&&ad>=1&&ad<=10))bad.push(setErr("ad","Enter 1 to 10 adults."));
+  if(!(val("children")!==""&&Number.isInteger(ch)&&ch>=0&&ch<=6))bad.push(setErr("ch","Enter 0 to 6 children."));
   if(val("name").trim().length<3)bad.push(setErr("name","Enter the traveller's full name."));
   if(!/^[6-9]\d{9}$/.test(val("phone").replace(/\s|-/g,"")))bad.push(setErr("phone","Enter a 10-digit mobile number starting with 6 to 9."));
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val("email").trim()))bad.push(setErr("mail","Enter a valid email address."));
@@ -519,8 +521,9 @@ function validate(){
 
 /* ---------- bookings storage ---------- */
 var KEY="marigold-routes-bookings",mem=[];
-function load(){try{var r=localStorage.getItem(KEY);if(r){var a=JSON.parse(r);if(Array.isArray(a))return a}}catch(e){}return mem}
-function save(a){mem=a;try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}}
+function validBooking(b){return b&&typeof b.ref==="string"&&/^MR-[0-9]{6}-[A-Z2-9]{4}$/.test(b.ref)&&["pkg","when","hotel","name"].every(function(k){return typeof b[k]==="string"})&&Number.isInteger(b.ad)&&b.ad>=1&&b.ad<=10&&Number.isInteger(b.ch)&&b.ch>=0&&b.ch<=6&&Number.isFinite(b.total)&&b.total>=0}
+function load(){try{var r=localStorage.getItem(KEY);if(r){var a=JSON.parse(r);if(Array.isArray(a))return a.filter(validBooking)}}catch(e){}return mem}
+function save(a){mem=a;try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){toast("Browser storage unavailable. This sample booking lasts only until you close or reload this page.")}}
 function ref(){var d=new Date(),s=(d.getFullYear()%100)+""+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0");
   var r="";for(var i=0;i<4;i++)r+="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random()*32)];return "MR-"+s+"-"+r}
 var pending=null;
@@ -530,9 +533,9 @@ function drawBk(){
   if(!a.length){box.innerHTML='<div class="empty">No bookings yet. Trips you confirm above appear here with their reference numbers.</div>';return}
   box.innerHTML=a.map(function(b){
     var asking=pending===b.ref;
-    return '<div class="bk"><div><span class="ref2">'+esc(b.ref)+'</span><h3 style="margin:.2rem 0">'+esc(b.pkg)+'</h3><p>'+esc(b.when)+' · '+b.ad+' adult'+(b.ad>1?"s":"")+(b.ch?", "+b.ch+" child"+(b.ch>1?"ren":""):"")+' · '+esc(b.hotel)+'</p><p>Booked for '+esc(b.name)+'</p></div>'+
+    return '<div class="bk"><div><span class="ref2">'+esc(b.ref)+'</span><h3 style="margin:.2rem 0">'+esc(b.pkg)+'</h3><p>'+esc(b.when)+' Â· '+b.ad+' adult'+(b.ad>1?"s":"")+(b.ch?", "+b.ch+" child"+(b.ch>1?"ren":""):"")+' Â· '+esc(b.hotel)+'</p><p>Booked for '+esc(b.name)+'</p></div>'+
     '<div style="text-align:right;display:grid;gap:.5rem;justify-items:end"><div class="price">'+rs(b.total)+'</div>'+
-    (asking?'<div class="form-actions"><button class="btn btn-ghost btn-sm danger" data-yes="'+b.ref+'">Yes, cancel trip</button><button class="btn btn-ghost btn-sm" data-no="1">Keep it</button></div>':'<button class="btn btn-ghost btn-sm" data-cancel="'+b.ref+'">Cancel booking</button>')+'</div></div>';
+    (asking?'<div class="form-actions"><button class="btn btn-ghost btn-sm danger" data-yes="'+esc(b.ref)+'">Yes, cancel trip</button><button class="btn btn-ghost btn-sm" data-no="1">Keep it</button></div>':'<button class="btn btn-ghost btn-sm" data-cancel="'+esc(b.ref)+'">Cancel booking</button>')+'</div></div>';
   }).join("");
 }
 document.getElementById("bk-list").addEventListener("click",function(e){
@@ -548,10 +551,10 @@ F.addEventListener("submit",function(e){
   e.preventDefault();if(!validate())return;
   var c=calc(),hotelName={"0":"Standard hotels","900":"Superior hotels","2400":"Luxury hotels"}[String(c.hot)];
   var b={ref:ref(),pkg:c.p.name,when:fmtRange(val("date"),c.p.days),ad:c.ad,ch:c.ch,hotel:hotelName,name:val("name").trim(),total:c.total,at:Date.now()};
-  var a=load();a.unshift(b);save(a);drawBk();
+  var a=load();while(a.some(function(saved){return saved.ref===b.ref}))b.ref=ref();a.unshift(b);save(a);drawBk();
   document.getElementById("c-ref").textContent=b.ref;
-  document.getElementById("c-title").textContent="Your "+c.p.name+" trip is reserved";
-  document.getElementById("c-text").textContent=b.when+" · "+c.ad+" adult"+(c.ad>1?"s":"")+(c.ch?" and "+c.ch+" child"+(c.ch>1?"ren":""):"")+" · "+hotelName+" · Total "+rs(c.total)+" for "+b.name+".";
+  document.getElementById("c-title").textContent="Your "+c.p.name+" sample booking is saved";
+  document.getElementById("c-text").textContent=b.when+" Â· "+c.ad+" adult"+(c.ad>1?"s":"")+(c.ch?" and "+c.ch+" child"+(c.ch>1?"ren":""):"")+" Â· "+hotelName+" Â· Total "+rs(c.total)+" for "+b.name+".";
   var cf=document.getElementById("confirm");cf.hidden=false;cf.scrollIntoView({behavior:"smooth",block:"center"});cf.focus({preventScroll:true});
 });
 drawBk();
