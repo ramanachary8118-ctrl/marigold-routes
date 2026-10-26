@@ -56,3 +56,6 @@ assert.ok(run('/^MR-[0-9]{6}-[A-Z2-9]{4}$/.test(ref())'));
 assert.match(html, /<html lang="en">/);
 assert.match(html, /no payment or real reservation is made/);
 console.log('Passed: eight trip itineraries, pricing with children/upgrades/extras/tax, traveller and date validation, corrupt storage recovery, booking persistence, reference format, demo disclosure.');
+
+assert.match(html.slice(0, 1024), /charset="UTF-8"/);
+assert.equal(run("rs(28500)"), "\u20b928,500");
